@@ -36,7 +36,7 @@ public class MainActivity extends ActionBarActivity {
 		laBottom = (LinearLayout) findViewById(R.id.laBottom);
 		ivLogo = (ImageView) findViewById(R.id.ivLogo);
 		ivBall = (ImageView) findViewById(R.id.ivBall);
-		ivBall.setImageResource(R.drawable.ball_4);
+		ivBall.setImageResource(R.drawable.ball_14);
 		ivLogo.setVisibility(View.VISIBLE);
 
 		Animation anim = new Animation();
