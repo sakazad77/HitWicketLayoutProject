@@ -1,0 +1,117 @@
+package com.shaik.hitwicketlayoutproject;
+
+import java.util.Timer;
+import java.util.TimerTask;
+
+import android.support.v7.app.ActionBarActivity;
+import android.app.Activity;
+import android.os.Bundle;
+import android.os.Handler;
+import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+
+public class MainActivity extends ActionBarActivity {
+
+	ImageView ivLogo, ivBall;
+	Timer timer = new Timer();
+	Timer timer2 = new Timer();
+	int k = 1;
+	LinearLayout laAll, laTop, laBottom;
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+
+		// Full Screen
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+				WindowManager.LayoutParams.FLAG_FULLSCREEN);
+		setContentView(R.layout.activity_main);
+
+		laAll = (LinearLayout) findViewById(R.id.laAll);
+		laTop = (LinearLayout) findViewById(R.id.laTop);
+		laBottom = (LinearLayout) findViewById(R.id.laBottom);
+		ivLogo = (ImageView) findViewById(R.id.ivLogo);
+		ivBall = (ImageView) findViewById(R.id.ivBall);
+		ivBall.setImageResource(R.drawable.ball_4);
+		ivLogo.setVisibility(View.VISIBLE);
+
+		Animation anim = new Animation();
+		anim.run();
+		
+		Handler h1 = new Handler();
+		h1.postDelayed(new Runnable(){
+			public void run(){
+				laTop.setVisibility(View.VISIBLE);
+			}
+		}, 3000);
+		
+		Handler h2 = new Handler();
+		h2.postDelayed(new Runnable(){
+			public void run(){
+				laBottom.setVisibility(View.VISIBLE);
+			}
+		}, 4000);	
+	}
+	
+	public class Animation extends Activity {
+
+		public void run() {	
+			timer.scheduleAtFixedRate(new TimerTask() {
+				synchronized public void run() {
+					if (k == 1) {
+						Runnable swapImage = new Runnable() {
+							@Override
+							public void run() {
+								ivBall.setImageResource(R.drawable.ball_11);
+							}
+						};
+						ivBall.postDelayed(swapImage, 50);
+						ivBall.setVisibility(View.VISIBLE);
+
+					} else if (k == 2) {
+						Runnable swapImage = new Runnable() {
+							@Override
+							public void run() {
+								ivBall.setImageResource(R.drawable.ball_12);
+							}
+						};
+						ivBall.postDelayed(swapImage, 50);
+						ivBall.setVisibility(View.VISIBLE);
+
+					} else if (k == 3) {
+						Runnable swapImage = new Runnable() {
+							@Override
+							public void run() {
+								ivBall.setImageResource(R.drawable.ball_13);
+							}
+						};
+						ivBall.postDelayed(swapImage, 50);
+						ivBall.setVisibility(View.VISIBLE);
+
+					} else if (k == 4) {
+						Runnable swapImage = new Runnable() {
+							@Override
+							public void run() {
+								ivBall.setImageResource(R.drawable.ball_14);
+							}
+						};
+						ivBall.postDelayed(swapImage, 50);
+						ivBall.setVisibility(View.VISIBLE);
+
+					} else if (k == 5) {
+						k = 0;
+					}
+					k++;
+				}
+			}, 0, 200);
+		}
+	}
+	
+}
+
+
+
